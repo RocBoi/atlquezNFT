@@ -1,12 +1,29 @@
 {
-  "name": "Dumbbooty",
-  "description": "Official NFT video for 'Dumbbooty' by RocBoi Quez. Available to the highest bidder only.",
-  "image": "https://bafybeiclbirhq4zwyska56flarpqde73pckwsdiemc4gju2ab27iz2kene.ipfs.w3s.link/cover.jpg", 
-  "animation_url": "https://bafybeiclbirhq4zwyska56flarpqde73pckwsdiemc4gju2ab27iz2kene.ipfs.w3s.link/",
+  "name": "DumbBootyNFT",
+  "description": "RocBoi Quez - DumbBooty NFT Music Video. Nudity & Explicit Lyrics. Live auction starts July 30th, 2025 at 9PM EST on atlquez.com. Bid starts at $100.",
+  "image": "https://bafybeiauajmb3tp4dppailspodpd5zp6mhobzu7x4tw275mkc5goq6lzum.ipfs.w3s.link/thumbnail.jpg",
+  "animation_url": "https://bafybeiauajmb3tp4dppailspodpd5zp6mhobzu7x4tw275mkc5goq6lzum.ipfs.w3s.link/DumbBootyNFT.mp4",
   "external_url": "https://atlquez.com/NFTauction",
   "attributes": [
-    { "trait_type": "Artist", "value": "RocBoi Quez" },
-    { "trait_type": "Track", "value": "Dumbbooty" },
-    { "trait_type": "Drop", "value": "1 of 1 Auction" }
+    {
+      "trait_type": "Artist",
+      "value": "RocBoi Quez"
+    },
+    {
+      "trait_type": "Type",
+      "value": "Music Video NFT"
+    },
+    {
+      "trait_type": "Starting Bid",
+      "value": "$100"
+    },
+    {
+      "trait_type": "Auction Start",
+      "value": "2025-07-30T21:00:00-05:00"
+    },
+    {
+      "trait_type": "Explicit Content",
+      "value": "Yes"
+    }
   ]
 }
