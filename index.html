@@ -2,92 +2,96 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta name="description" content="RocBoi Quez NFT Video Auction - Limited 48 Hour Bidding on ATLQUEZ.com.">
-  <meta name="keywords" content="NFT, RocBoi Quez, Hip-Hop, ATLQUEZ, Metaverse, Web3">
-  <title>RocBoi Quez - NFT Auction</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RocBoi Quez – DumbBooty NFT Auction</title>
+  <meta name="description" content="Live NFT auction for RocBoi Quez – DumbBooty NFT Music Video. Nudity & Explicit Lyrics." />
   <style>
     body {
-      background-color: #111;
-      color: #eee;
-      font-family: 'Arial', sans-serif;
-      text-align: center;
+      font-family: Arial, sans-serif;
+      background: #000;
+      color: #fff;
       padding: 2rem;
+      text-align: center;
     }
-
-    h1 {
-      color: #0ff;
-      margin-bottom: 1rem;
-    }
-
     video {
       max-width: 100%;
-      border: 4px solid #0ff;
-      border-radius: 12px;
+      border: 2px solid #fff;
       margin-bottom: 1rem;
     }
-
-    .timer {
-      font-size: 2rem;
-      font-weight: bold;
-      color: #ff4081;
-    }
-
-    .bid-button {
-      background-color: #0ff;
-      color: #000;
-      border: none;
-      padding: 1rem 2rem;
-      font-size: 1.2rem;
-      cursor: pointer;
-      border-radius: 8px;
+    .auction-box {
+      background: #111;
+      padding: 1rem;
+      border-radius: 10px;
+      display: inline-block;
       margin-top: 1rem;
     }
-
-    .bid-button:hover {
-      background-color: #00f0f0;
+    .button {
+      background: #27ae60;
+      color: white;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      font-size: 1rem;
+      cursor: pointer;
+      margin-top: 1rem;
+    }
+    .button:hover {
+      background: #219150;
+    }
+    input[type="number"] {
+      padding: 0.5rem;
+      font-size: 1rem;
+      margin-top: 1rem;
+      width: 150px;
     }
   </style>
 </head>
 <body>
-  <h1>🔥 RocBoi Quez NFT Auction 🔥</h1>
-  <p>Own a piece of hip-hop history. 48-hour limited auction for the NFT video drop.</p>
 
-  <video controls autoplay muted>
-    <source src="https://bafybeibi2v4ebf6efglqro37z4jcni4ds3oaeke7hh34id4rxr7svi2s7y.ipfs.w3s.link/dumbbooty.mp4" type="video/mp4">
+  <h1>🔥 RocBoi Quez – DumbBooty NFT Auction</h1>
+  <p><strong>Description:</strong> NFT Music Video — "Nudity & Explicit Lyrics"</p>
+
+  <video controls poster="https://bafybeiauajmb3tp4dppailspodpd5zp6mhobzu7x4tw275mkc5goq6lzum.ipfs.w3s.link/cover.jpg">
+    <source src="https://bafybeiauajmb3tp4dppailspodpd5zp6mhobzu7x4tw275mkc5goq6lzum.ipfs.w3s.link/" type="video/mp4">
     Your browser does not support the video tag.
   </video>
 
-  <div class="timer" id="countdown"></div>
+  <div class="auction-box">
+    <p><strong>Auction Starts:</strong> July 30, 2025 @ 9:00 PM EST</p>
+    <p><strong>Starting Bid:</strong> $100</p>
+    <p>Connect your wallet to place a bid.</p>
 
-  <button class="bid-button" onclick="window.location.href='https://atlquez.com/NFTauction'">
-    Start Bid at $100
-  </button>
+    <button class="button" onclick="connectWallet()">🔗 Connect MetaMask</button>
+    <br/>
+    <input id="bidAmount" type="number" min="100" step="10" placeholder="Enter bid ($)" />
+    <br/>
+    <button class="button" onclick="placeBid()">💰 Place Bid</button>
+  </div>
 
   <script>
-    // Countdown Timer (48 hours)
-    const endTime = new Date().getTime() + 48 * 60 * 60 * 1000;
+    async function connectWallet() {
+      if (typeof window.ethereum !== 'undefined') {
+        try {
+          const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
+          alert('Connected: ' + accounts[0]);
+        } catch (err) {
+          console.error(err);
+          alert('Wallet connection failed.');
+        }
+      } else {
+        alert('Please install MetaMask!');
+      }
+    }
 
-    const countdown = document.getElementById("countdown");
-
-    const updateCountdown = () => {
-      const now = new Date().getTime();
-      const distance = endTime - now;
-
-      if (distance < 0) {
-        countdown.innerHTML = "⏱ Auction Ended";
+    async function placeBid() {
+      const bid = document.getElementById("bidAmount").value;
+      if (!bid || bid < 100) {
+        alert("Bid must be $100 or more.");
         return;
       }
-
-      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-      countdown.innerHTML = `⏳ ${hours}h ${minutes}m ${seconds}s`;
-    };
-
-    setInterval(updateCountdown, 1000);
-    updateCountdown();
+      // You would replace this with smart contract logic
+      alert(`Bid placed: $${bid}. (Smart contract logic goes here.)`);
+    }
   </script>
+
 </body>
 </html>
