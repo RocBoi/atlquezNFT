@@ -1,0 +1,12 @@
+{
+  "name": "Dumbbooty",
+  "description": "Official NFT video for 'Dumbbooty' by RocBoi Quez. Available to the highest bidder only.",
+  "image": "https://bafybeiclbirhq4zwyska56flarpqde73pckwsdiemc4gju2ab27iz2kene.ipfs.w3s.link/cover.jpg", 
+  "animation_url": "https://bafybeiclbirhq4zwyska56flarpqde73pckwsdiemc4gju2ab27iz2kene.ipfs.w3s.link/",
+  "external_url": "https://atlquez.com/NFTauction",
+  "attributes": [
+    { "trait_type": "Artist", "value": "RocBoi Quez" },
+    { "trait_type": "Track", "value": "Dumbbooty" },
+    { "trait_type": "Drop", "value": "1 of 1 Auction" }
+  ]
+}
