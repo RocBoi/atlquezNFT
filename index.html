@@ -2,341 +2,125 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta name="description" content="RocBoi Quez Official Site - Summer of the Real featuring Wiz Khalifa out now on BentleyRecords.io.">
-  <meta name="keywords" content="RocBoi Quez, Wiz Khalifa, Hip-Hop, Summer of the Real, Bentley Records, DJ VIP, Taylor Gang">
-  <meta name="author" content="RocBoi Quez">
-  <title>RocBoi Quez | Hip-Hop’s New Legend & DumbBootyNFT Auction</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dumbbooty NFT Auction | RocBoi Quez</title>
   <style>
     body {
+      font-family: 'Arial', sans-serif;
+      background: #000;
+      color: #fff;
       margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background: url('assets/images/images.jpeg') no-repeat center center fixed;
-      background-size: cover;
-      color: #ffffff;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 2rem;
-      min-height: 100vh;
+      padding: 0;
+      text-align: center;
     }
     header {
-      background: linear-gradient(to right, rgba(30,60,114,0.85), rgba(42,82,152,0.85));
       padding: 2rem;
-      text-align: center;
-      color: silver;
-      font-size: 2.5rem;
-      font-weight: bold;
-      text-transform: uppercase;
-      width: 100%;
-      box-sizing: border-box;
-      margin-bottom: 1rem;
+      background: #111;
     }
-    nav {
-      display: flex;
-      justify-content: center;
-      background-color: rgba(17, 17, 17, 0.95);
-      padding: 1rem 0;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      width: 100%;
-      box-sizing: border-box;
-      margin-bottom: 2rem;
-    }
-    nav a {
-      color: #fff;
-      margin: 0 1.5rem;
-      text-decoration: none;
-      font-weight: bold;
-    }
-    nav a:hover {
-      color: #1e90ff;
-    }
-    section {
-      padding: 2rem;
-      text-align: center;
-      max-width: 900px;
-      width: 100%;
-      background-color: rgba(28, 28, 43, 0.9);
-      border-radius: 10px;
-      margin-bottom: 2rem;
-    }
-    img {
-      max-width: 90%;
-      height: auto;
-      margin-bottom: 1rem;
+    video {
+      width: 90%;
+      max-width: 720px;
+      margin: 1rem auto;
+      border: 2px solid #fff;
       border-radius: 12px;
     }
-    .stream-now {
-      display: inline-block;
-      background-color: #1e90ff;
-      color: #fff;
-      padding: 0.8rem 1.5rem;
-      text-decoration: none;
-      font-weight: bold;
+    .countdown {
+      font-size: 2rem;
+      margin: 1rem 0;
+    }
+    form {
+      margin: 1.5rem auto;
+      max-width: 500px;
+      background: #222;
+      padding: 1rem;
+      border-radius: 10px;
+    }
+    input, button {
+      width: 90%;
+      padding: 0.5rem;
+      margin: 0.5rem 0;
       border-radius: 5px;
-      margin-top: 1rem;
-    }
-    .popup-ad {
-      position: fixed;
-      bottom: 15px;
-      right: 15px;
-      width: 300px;
-      border: 3px solid #fff;
-      background: #fff;
-      z-index: 999;
-      border-radius: 12px;
-      overflow: hidden;
-    }
-    .popup-ad img {
-      width: 100%;
-      display: block;
-      border-radius: 12px 12px 0 0;
-    }
-
-    /* Pop-up background overlay */
-    #promo-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0,0,0,0.7);
-      display: none;
-      z-index: 9998;
-    }
-
-    /* Pop-up container */
-    #promo-popup {
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%) scale(0.7);
-      background: #121212;
-      color: #fff;
-      padding: 20px 25px 30px;
-      border-radius: 12px;
-      width: 320px;
-      max-width: 90vw;
-      box-shadow: 0 0 20px rgba(0,255,153,0.8);
-      font-family: Arial, sans-serif;
-      z-index: 9999;
-      opacity: 0;
-      transition: opacity 0.4s ease, transform 0.4s ease;
-    }
-
-    /* Show popup */
-    #promo-popup.show {
-      opacity: 1;
-      transform: translate(-50%, -50%) scale(1);
-    }
-
-    #promo-popup img {
-      display: block;
-      max-width: 100%;
-      border-radius: 10px;
-      margin-bottom: 15px;
-    }
-
-    #promo-popup h2 {
-      margin: 0 0 10px;
-      font-size: 24px;
-      color: #00ff99;
-      text-align: center;
-    }
-
-    #promo-popup p {
-      margin: 0 0 18px;
-      font-size: 16px;
-      text-align: center;
-    }
-
-    #promo-popup p span.discount {
-      color: #ff4444;
-      font-weight: bold;
-    }
-
-    #promo-popup a {
-      display: block;
-      background-color: #00ff99;
-      color: #121212;
-      font-weight: bold;
-      text-decoration: none;
-      text-align: center;
-      padding: 12px 0;
-      border-radius: 8px;
-      font-size: 18px;
-      box-shadow: 0 4px 8px rgba(0,255,153,0.4);
-      transition: background-color 0.3s ease;
-    }
-
-    #promo-popup a:hover {
-      background-color: #00cc7a;
-    }
-
-    #promo-close-btn {
-      position: absolute;
-      top: 10px;
-      right: 15px;
-      font-size: 24px;
-      font-weight: bold;
-      color: #fff;
-      cursor: pointer;
-      user-select: none;
-    }
-
-    /* NFT Auction styles */
-    #nftVideo {
-      width: 100%;
-      max-width: 600px;
-      margin: 20px auto;
-      border-radius: 12px;
-      background: black;
-    }
-    #countdown {
-      font-size: 1.5rem;
-      margin-top: 1rem;
-      color: #ffcc00;
-      text-align: center;
-      font-weight: bold;
-    }
-    .auction-buttons {
-      text-align: center;
-      margin: 20px 0;
-    }
-    .auction-buttons button {
-      padding: 10px 20px;
-      margin: 0 10px;
-      background: #00ff88;
       border: none;
-      border-radius: 5px;
-      color: #000;
       font-size: 1rem;
-      cursor: pointer;
-      font-weight: bold;
     }
-    .auction-buttons button:hover {
-      background: #00cc77;
+    .top-bid {
+      font-size: 1.2rem;
+      margin: 1rem;
+    }
+    footer {
+      padding: 1rem;
+      font-size: 0.9rem;
     }
   </style>
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4001446849582943" crossorigin="anonymous"></script>
 </head>
 <body>
-
   <header>
-    ROCBOI QUEZ<br>HIP-HOP’S NEW RISING LEGEND
+    <h1>Dumbbooty NFT Auction</h1>
+    <h3>by RocBoi Quez</h3>
+    <p>Place your bid now. Winner gets the NFT after 48h.</p>
   </header>
 
-  <nav>
-    <a href="music.html">Music</a>
-    <a href="videos.html">Videos</a>
-    <a href="merch.html">Merch</a>
-    <a href="booking.html">Booking</a>
-    <a href="/NFTvideoBid.html">Watch DumbBootyNFT</a>
-    <li><a href="/nft/NFTvideoBid">🎥 NFT Video Auction</a></li>
-  </nav>
+  <video controls>
+    <source src="https://bafybeiclbirhq4zwyska56flarpqde73pckwsdiemc4gju2ab27iz2kene.ipfs.w3s.link/" type="video/mp4" />
+    Your browser does not support the video tag.
+  </video>
 
-  <section>
-    <h2>Summer of the Real ft. Wiz Khalifa</h2>
-    <img src="assets/images/Screenshot_20250620-160150.png" alt="Summer of the Real Cover" />
-    <a class="stream-now" href="https://bentleyrecords.lnk.to/WizKhalifa-SummerOfTheReal?fbclid=PAZXh0bgNhZW0CMTEAAaeOuxOqcCSRRLGuJAvnWuBDOyf6CgAIKaQUAhY1kgv6u0D0M5U-bl2eQAi0Hg_aem_Lcq2qspl2CRYYQiP8LYDHA" target="_blank" rel="noopener">Stream Now</a>
-  </section>
+  <div class="countdown" id="timer">Loading timer...</div>
 
-  <section class="article">
-    <h2>RocBoi Quez x DJ VIP - Exclusive Announcement</h2>
-    <p>RocBoi Quez has officially joined forces with DJ VIP to launch a new era of independent distribution and artist visibility. In collaboration with Bentley Records and powered by the new artist development platform, RocBoi's latest projects pushed creative boundaries and secured him a seat at the table with legends. Taylor Gang’s very own Wiz Khalifa joins the lineup with a co-signed feature in “Summer of the Real.”</p>
-    <p>Stay tuned for more singles, streaming exclusives, fan merch drops, and major press coverage on RocBoi’s rise from Atlanta to the global stage.</p>
-  </section>
+  <form id="bidForm">
+    <input type="text" id="name" placeholder="Your Name" required />
+    <input type="text" id="wallet" placeholder="Your Wallet Address" required />
+    <input type="number" id="amount" placeholder="Your Bid (USD or ETH)" required />
+    <button type="submit">Place Bid</button>
+  </form>
 
-  <!-- NFT Auction Section -->
-  <section>
-    <h1 style="color:#00ff88;">RocBoi Quez - DumbBootyNFT Auction</h1>
+  <div class="top-bid" id="topBid">No bids yet.</div>
 
-    <video id="nftVideo" controls>
-      <source src="
-https://ipfs.com/ipfs/QmWUoHmosBfPk52syrVc5em8HiuncaZRcyTPBMZqpSaWmG" type="video/mp4">
-      Your browser does not support the video tag.
-    </video>
-
-    <div class="auction-buttons">
-      <button onclick="startAuction()">Start 48-Hour Auction</button>
-      <button onclick="mintNft()">Mint NFT</button>
-      <button onclick="placeBid()">Place Bid</button>
-    </div>
-
-    <div id="countdown"></div>
-  </section>
-
-  <!-- Popup Ad -->
-  <div class="popup-ad">
-    <a href="https://www.redbubble.com/shop/ap/172231642?asc=u" target="_blank" rel="noopener">
-      <img src="https://www.redbubble.com/shop/ap/172231642?asc=u" alt="Fan Merch Ad">
-    </a>
-  </div>
-
-  <!-- Overlay -->
-  <div id="promo-overlay"></div>
-
-  <!-- Pop-up -->
-  <div id="promo-popup" role="dialog" aria-modal="true" aria-labelledby="promo-title" aria-describedby="promo-desc">
-    <span id="promo-close-btn" aria-label="Close popup">&times;</span>
-    <img src="assets/images/ResizedImage_2025-07-19_06-10-47_1594.jpg" alt="High Stoner Tough iPhone Case" />
-    <h2 id="promo-title">New Release!</h2>
-    <p id="promo-desc">Get your <strong>"High Stoner"</strong> Tough iPhone Case<br>— Durable & Stylish.<br><span class="discount">25% OFF for a limited time!</span></p>
-    <a href="https://www.redbubble.com/i/iphone-case/COMING-SOON-FALL-25-by-GCodeMerch/172285674.18NOY" target="_blank" rel="noopener">Shop Now</a>
-  </div>
+  <footer>
+    &copy; 2025 RocBoi Quez. Hosted on <a href="https://atlquez.com" style="color:#0af;">atlquez.com</a>.
+  </footer>
 
   <script>
     // Auction countdown logic
-    function startAuction() {
-      const end = new Date().getTime() + 48 * 60 * 60 * 1000;
-      const countdown = document.getElementById("countdown");
-      const interval = setInterval(() => {
-        const now = new Date().getTime();
-        const distance = end - now;
+    const endTime = new Date().getTime() + 48 * 60 * 60 * 1000; // 48 hours
+    const timer = document.getElementById('timer');
 
-        if (distance < 0) {
-          clearInterval(interval);
-          countdown.innerHTML = "Auction ended!";
-        } else {
-          const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-          const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-          const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-          countdown.innerHTML = `Time left: ${hours}h ${minutes}m ${seconds}s`;
-        }
-      }, 1000);
-    }
+    const updateTimer = () => {
+      const now = new Date().getTime();
+      const distance = endTime - now;
 
-    function mintNft() {
-      alert("Mint function will connect to your wallet and mint NFT (Web3 integration required).");
-      // Placeholder for real Web3 interaction
-    }
+      if (distance < 0) {
+        timer.innerHTML = "Auction ended";
+        document.getElementById("bidForm").style.display = "none";
+        return;
+      }
 
-    function placeBid() {
-      alert("Place Bid function triggered. Web3 auction logic will handle transaction.");
-      // Placeholder for real smart contract call
-    }
-
-    // Show popup and overlay with animation
-    window.onload = function() {
-      setTimeout(function() {
-        document.getElementById('promo-overlay').style.display = 'block';
-        document.getElementById('promo-popup').classList.add('show');
-      }, 2000); // 2 seconds delay
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+      timer.innerHTML = `⏳ ${hours}h ${minutes}m ${seconds}s left`;
     };
+    setInterval(updateTimer, 1000);
 
-    // Close popup
-    document.getElementById('promo-close-btn').onclick = closePopup;
-    document.getElementById('promo-overlay').onclick = closePopup;
+    // Basic bid logic (non-blockchain)
+    let topBid = null;
 
-    function closePopup() {
-      const popup = document.getElementById('promo-popup');
-      const overlay = document.getElementById('promo-overlay');
-      popup.classList.remove('show');
-      overlay.style.display = 'none';
-    }
+    document.getElementById("bidForm").addEventListener("submit", (e) => {
+      e.preventDefault();
+      const name = document.getElementById("name").value;
+      const wallet = document.getElementById("wallet").value;
+      const amount = parseFloat(document.getElementById("amount").value);
+
+      if (!topBid || amount > topBid.amount) {
+        topBid = { name, wallet, amount };
+        document.getElementById("topBid").innerHTML = `🔥 Top Bid: $${amount} by ${name}`;
+        alert("Bid submitted successfully!");
+      } else {
+        alert("Your bid must be higher than the current top bid.");
+      }
+
+      e.target.reset();
+    });
   </script>
-
 </body>
 </html>
