@@ -2,126 +2,92 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Dumbbooty NFT Auction | RocBoi Quez</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="RocBoi Quez NFT Video Auction - Limited 48 Hour Bidding on ATLQUEZ.com.">
+  <meta name="keywords" content="NFT, RocBoi Quez, Hip-Hop, ATLQUEZ, Metaverse, Web3">
+  <title>RocBoi Quez - NFT Auction</title>
   <style>
     body {
+      background-color: #111;
+      color: #eee;
       font-family: 'Arial', sans-serif;
-      background: #000;
-      color: #fff;
-      margin: 0;
-      padding: 0;
       text-align: center;
-    }
-    header {
       padding: 2rem;
-      background: #111;
     }
+
+    h1 {
+      color: #0ff;
+      margin-bottom: 1rem;
+    }
+
     video {
-      width: 90%;
-      max-width: 720px;
-      margin: 1rem auto;
-      border: 2px solid #fff;
+      max-width: 100%;
+      border: 4px solid #0ff;
       border-radius: 12px;
+      margin-bottom: 1rem;
     }
-    .countdown {
+
+    .timer {
       font-size: 2rem;
-      margin: 1rem 0;
+      font-weight: bold;
+      color: #ff4081;
     }
-    form {
-      margin: 1.5rem auto;
-      max-width: 500px;
-      background: #222;
-      padding: 1rem;
-      border-radius: 10px;
-    }
-    input, button {
-      width: 90%;
-      padding: 0.5rem;
-      margin: 0.5rem 0;
-      border-radius: 5px;
+
+    .bid-button {
+      background-color: #0ff;
+      color: #000;
       border: none;
-      font-size: 1rem;
-    }
-    .top-bid {
+      padding: 1rem 2rem;
       font-size: 1.2rem;
-      margin: 1rem;
+      cursor: pointer;
+      border-radius: 8px;
+      margin-top: 1rem;
     }
-    footer {
-      padding: 1rem;
-      font-size: 0.9rem;
+
+    .bid-button:hover {
+      background-color: #00f0f0;
     }
-    a { color: #0af; }
   </style>
 </head>
 <body>
-  <header>
-    <h1>Dumbbooty NFT Auction</h1>
-    <h3>by RocBoi Quez</h3>
-    <p>Place your bid now. Auction ends July 30, 2025 @ 9:00 PM EST</p>
-  </header>
+  <h1>🔥 RocBoi Quez NFT Auction 🔥</h1>
+  <p>Own a piece of hip-hop history. 48-hour limited auction for the NFT video drop.</p>
 
-  <video controls>
-    <source src="https://bafybeiclbirhq4zwyska56flarpqde73pckwsdiemc4gju2ab27iz2kene.ipfs.w3s.link/" type="video/mp4" />
+  <video controls autoplay muted>
+    <source src="https://bafybeibi2v4ebf6efglqro37z4jcni4ds3oaeke7hh34id4rxr7svi2s7y.ipfs.w3s.link/dumbbooty.mp4" type="video/mp4">
     Your browser does not support the video tag.
   </video>
 
-  <div class="countdown" id="timer">Loading countdown...</div>
+  <div class="timer" id="countdown"></div>
 
-  <form id="bidForm">
-    <input type="text" id="name" placeholder="Your Name" required />
-    <input type="text" id="wallet" placeholder="Your Wallet Address" required />
-    <input type="number" id="amount" placeholder="Your Bid (USD or ETH)" required min="100" />
-    <button type="submit">Place Bid</button>
-  </form>
-
-  <div class="top-bid" id="topBid">🔥 Starting Bid: $100</div>
-
-  <footer>
-    &copy; 2025 RocBoi Quez. Hosted at <a href="https://atlquez.com/NFTauction">atlquez.com/NFTauction</a>.
-  </footer>
+  <button class="bid-button" onclick="window.location.href='https://atlquez.com/NFTauction'">
+    Start Bid at $100
+  </button>
 
   <script>
-    // Set end time: July 30, 2025 @ 9:00 PM EST = July 31, 2025 @ 01:00 AM UTC
-    const endTime = new Date('2025-07-31T01:00:00Z').getTime();
-    const timer = document.getElementById('timer');
+    // Countdown Timer (48 hours)
+    const endTime = new Date().getTime() + 48 * 60 * 60 * 1000;
 
-    const updateTimer = () => {
+    const countdown = document.getElementById("countdown");
+
+    const updateCountdown = () => {
       const now = new Date().getTime();
       const distance = endTime - now;
 
       if (distance < 0) {
-        timer.innerHTML = "⏰ Auction ended";
-        document.getElementById("bidForm").style.display = "none";
+        countdown.innerHTML = "⏱ Auction Ended";
         return;
       }
 
       const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
       const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
       const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-      timer.innerHTML = `⏳ ${hours}h ${minutes}m ${seconds}s left`;
+
+      countdown.innerHTML = `⏳ ${hours}h ${minutes}m ${seconds}s`;
     };
-    setInterval(updateTimer, 1000);
 
-    // Bid logic (starts at $100)
-    let topBid = { name: "Opening Bid", wallet: "N/A", amount: 100 };
-
-    document.getElementById("bidForm").addEventListener("submit", (e) => {
-      e.preventDefault();
-      const name = document.getElementById("name").value;
-      const wallet = document.getElementById("wallet").value;
-      const amount = parseFloat(document.getElementById("amount").value);
-
-      if (amount > topBid.amount) {
-        topBid = { name, wallet, amount };
-        document.getElementById("topBid").innerHTML = `🔥 Top Bid: $${amount} by ${name}`;
-        alert("✅ Bid submitted successfully!");
-      } else {
-        alert(`⚠️ Your bid must be higher than $${topBid.amount}.`);
-      }
-
-      e.target.reset();
-    });
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
   </script>
 </body>
 </html>
