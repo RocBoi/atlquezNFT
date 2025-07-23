@@ -51,13 +51,14 @@
       padding: 1rem;
       font-size: 0.9rem;
     }
+    a { color: #0af; }
   </style>
 </head>
 <body>
   <header>
     <h1>Dumbbooty NFT Auction</h1>
     <h3>by RocBoi Quez</h3>
-    <p>Place your bid now. Winner gets the NFT after 48h.</p>
+    <p>Place your bid now. Auction ends July 30, 2025 @ 9:00 PM EST</p>
   </header>
 
   <video controls>
@@ -65,24 +66,24 @@
     Your browser does not support the video tag.
   </video>
 
-  <div class="countdown" id="timer">Loading timer...</div>
+  <div class="countdown" id="timer">Loading countdown...</div>
 
   <form id="bidForm">
     <input type="text" id="name" placeholder="Your Name" required />
     <input type="text" id="wallet" placeholder="Your Wallet Address" required />
-    <input type="number" id="amount" placeholder="Your Bid (USD or ETH)" required />
+    <input type="number" id="amount" placeholder="Your Bid (USD or ETH)" required min="100" />
     <button type="submit">Place Bid</button>
   </form>
 
-  <div class="top-bid" id="topBid">No bids yet.</div>
+  <div class="top-bid" id="topBid">🔥 Starting Bid: $100</div>
 
   <footer>
-    &copy; 2025 RocBoi Quez. Hosted on <a href="https://atlquez.com" style="color:#0af;">atlquez.com</a>.
+    &copy; 2025 RocBoi Quez. Hosted at <a href="https://atlquez.com/NFTauction">atlquez.com/NFTauction</a>.
   </footer>
 
   <script>
-    // Auction countdown logic
-    const endTime = new Date().getTime() + 48 * 60 * 60 * 1000; // 48 hours
+    // Set end time: July 30, 2025 @ 9:00 PM EST = July 31, 2025 @ 01:00 AM UTC
+    const endTime = new Date('2025-07-31T01:00:00Z').getTime();
     const timer = document.getElementById('timer');
 
     const updateTimer = () => {
@@ -90,7 +91,7 @@
       const distance = endTime - now;
 
       if (distance < 0) {
-        timer.innerHTML = "Auction ended";
+        timer.innerHTML = "⏰ Auction ended";
         document.getElementById("bidForm").style.display = "none";
         return;
       }
@@ -102,8 +103,8 @@
     };
     setInterval(updateTimer, 1000);
 
-    // Basic bid logic (non-blockchain)
-    let topBid = null;
+    // Bid logic (starts at $100)
+    let topBid = { name: "Opening Bid", wallet: "N/A", amount: 100 };
 
     document.getElementById("bidForm").addEventListener("submit", (e) => {
       e.preventDefault();
@@ -111,12 +112,12 @@
       const wallet = document.getElementById("wallet").value;
       const amount = parseFloat(document.getElementById("amount").value);
 
-      if (!topBid || amount > topBid.amount) {
+      if (amount > topBid.amount) {
         topBid = { name, wallet, amount };
         document.getElementById("topBid").innerHTML = `🔥 Top Bid: $${amount} by ${name}`;
-        alert("Bid submitted successfully!");
+        alert("✅ Bid submitted successfully!");
       } else {
-        alert("Your bid must be higher than the current top bid.");
+        alert(`⚠️ Your bid must be higher than $${topBid.amount}.`);
       }
 
       e.target.reset();
