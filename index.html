@@ -4,7 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <meta name="description" content="NFT Auction for Dumbooty - Bid starting at $50 on July 30th, 2025"/>
-  <meta name="keywords" content="NFT Auction, Dumbooty, Bid, NFT, Digital Art"/>
   <title>Dumbooty NFT Auction</title>
   <style>
     body {
@@ -30,7 +29,6 @@
     }
     .nft-image {
       max-width: 100%;
-      height: auto;
       border: 5px solid #fff;
       border-radius: 10px;
     }
@@ -38,10 +36,6 @@
       font-size: 1.5em;
       margin-top: 20px;
       color: #ff5733;
-    }
-    .bid-info {
-      font-size: 1.2em;
-      margin-top: 20px;
     }
     .button {
       padding: 10px 20px;
@@ -55,6 +49,10 @@
     .button:hover {
       background-color: #218838;
     }
+    #wallet-address {
+      margin-top: 10px;
+      color: #0ff;
+    }
   </style>
 </head>
 <body>
@@ -62,42 +60,81 @@
   <div class="container">
     <h1>Dumbooty NFT Auction</h1>
     <img src="https://bafybeiauajmb3tp4dppailspodpd5zp6mhobzu7x4tw275mkc5goq6lzum.ipfs.w3s.link/" alt="Dumbooty NFT" class="nft-image">
-    <p>Bid starting at $50. The auction starts live on <strong>July 30th, 2025 at 9:00 PM Eastern Time</strong>.</p>
+
+    <p>Bid starts at <strong>$50 (≈0.015 ETH)</strong>. Live on <strong>July 30, 2025 @ 9PM ET</strong>.</p>
     <div class="countdown" id="countdown"></div>
 
-    <div class="bid-info">
-      <p>Get ready to place your bids!</p>
-      <p><strong>Current bid: $50</strong></p>
-    </div>
+    <button class="button" id="connectWallet">Connect MetaMask</button>
+    <div id="wallet-address"></div>
 
-    <button class="button" id="start-bid" disabled>Place Your Bid</button>
+    <button class="button" id="startBid" disabled>Place Bid</button>
   </div>
 
   <script>
-    // Set the auction start date and time
     const auctionStartDate = new Date("July 30, 2025 21:00:00 GMT-0400");
+    const countdownEl = document.getElementById("countdown");
+    const startBidBtn = document.getElementById("startBid");
+    const connectWalletBtn = document.getElementById("connectWallet");
+    const walletAddressEl = document.getElementById("wallet-address");
 
-    // Update the countdown every second
-    const countdownElement = document.getElementById("countdown");
-    const startBidButton = document.getElementById("start-bid");
+    let userAccount;
 
     function updateCountdown() {
       const now = new Date();
       const timeLeft = auctionStartDate - now;
 
       if (timeLeft > 0) {
-        const hours = Math.floor(timeLeft / (1000 * 60 * 60));
-        const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
-        countdownElement.textContent = `Time left: ${hours}h ${minutes}m ${seconds}s`;
+        const h = Math.floor(timeLeft / (1000 * 60 * 60));
+        const m = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+        const s = Math.floor((timeLeft % (1000 * 60)) / 1000);
+        countdownEl.textContent = `Auction starts in: ${h}h ${m}m ${s}s`;
       } else {
-        countdownElement.textContent = "The auction is live!";
-        startBidButton.disabled = false;
-        startBidButton.textContent = "Place Your Bid Now!";
+        countdownEl.textContent = "Auction is live!";
+        startBidBtn.disabled = false;
       }
     }
 
     setInterval(updateCountdown, 1000);
+
+    // MetaMask connect
+    connectWalletBtn.addEventListener("click", async () => {
+      if (typeof window.ethereum !== "undefined") {
+        try {
+          const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
+          userAccount = accounts[0];
+          walletAddressEl.innerText = `Wallet: ${userAccount}`;
+        } catch (err) {
+          alert("MetaMask connection rejected.");
+        }
+      } else {
+        alert("MetaMask is not installed. Please install it to continue.");
+      }
+    });
+
+    // Place bid
+    startBidBtn.addEventListener("click", async () => {
+      if (!userAccount) {
+        alert("Please connect your wallet first.");
+        return;
+      }
+
+      const receiver = "0x05e07BCA157986544e5C41E90A34910D5d5E423B"; // Your wallet
+      const bidAmountEth = "0.015"; // $50 in ETH (est.)
+
+      try {
+        await ethereum.request({
+          method: 'eth_sendTransaction',
+          params: [{
+            from: userAccount,
+            to: receiver,
+            value: (parseFloat(bidAmountEth) * 1e18).toString(16), // in wei
+          }]
+        });
+        alert("Bid sent successfully!");
+      } catch (err) {
+        alert("Transaction failed: " + err.message);
+      }
+    });
   </script>
 
 </body>
