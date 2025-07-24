@@ -2,95 +2,102 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>RocBoi Quez – DumbBooty NFT Auction</title>
-  <meta name="description" content="Live NFT auction for RocBoi Quez – DumbBooty NFT Music Video. Nudity & Explicit Lyrics." />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="NFT Auction for Dumbooty - Bid starting at $50 on July 30th, 2025"/>
+  <meta name="keywords" content="NFT Auction, Dumbooty, Bid, NFT, Digital Art"/>
+  <title>Dumbooty NFT Auction</title>
   <style>
     body {
       font-family: Arial, sans-serif;
-      background: #000;
+      background-color: #111;
       color: #fff;
-      padding: 2rem;
       text-align: center;
+      margin: 0;
+      padding: 0;
     }
-    video {
-      max-width: 100%;
-      border: 2px solid #fff;
-      margin-bottom: 1rem;
-    }
-    .auction-box {
-      background: #111;
-      padding: 1rem;
+    .container {
+      max-width: 800px;
+      margin: 50px auto;
+      padding: 20px;
+      background-color: #222;
       border-radius: 10px;
-      display: inline-block;
-      margin-top: 1rem;
+    }
+    h1 {
+      font-size: 2em;
+    }
+    p {
+      font-size: 1.2em;
+    }
+    .nft-image {
+      max-width: 100%;
+      height: auto;
+      border: 5px solid #fff;
+      border-radius: 10px;
+    }
+    .countdown {
+      font-size: 1.5em;
+      margin-top: 20px;
+      color: #ff5733;
+    }
+    .bid-info {
+      font-size: 1.2em;
+      margin-top: 20px;
     }
     .button {
-      background: #27ae60;
-      color: white;
+      padding: 10px 20px;
+      font-size: 1.2em;
+      background-color: #28a745;
       border: none;
-      padding: 0.75rem 1.5rem;
-      font-size: 1rem;
+      border-radius: 5px;
       cursor: pointer;
-      margin-top: 1rem;
+      margin-top: 20px;
     }
     .button:hover {
-      background: #219150;
-    }
-    input[type="number"] {
-      padding: 0.5rem;
-      font-size: 1rem;
-      margin-top: 1rem;
-      width: 150px;
+      background-color: #218838;
     }
   </style>
 </head>
 <body>
 
-  <h1>🔥 RocBoi Quez – DumbBooty NFT Auction</h1>
-  <p><strong>Description:</strong> NFT Music Video — "Nudity & Explicit Lyrics"</p>
+  <div class="container">
+    <h1>Dumbooty NFT Auction</h1>
+    <img src="https://bafybeiauajmb3tp4dppailspodpd5zp6mhobzu7x4tw275mkc5goq6lzum.ipfs.w3s.link/" alt="Dumbooty NFT" class="nft-image">
+    <p>Bid starting at $50. The auction starts live on <strong>July 30th, 2025 at 9:00 PM Eastern Time</strong>.</p>
+    <div class="countdown" id="countdown"></div>
 
-  <video controls poster="https://bafybeiauajmb3tp4dppailspodpd5zp6mhobzu7x4tw275mkc5goq6lzum.ipfs.w3s.link/cover.jpg">
-    <source src="https://bafybeiauajmb3tp4dppailspodpd5zp6mhobzu7x4tw275mkc5goq6lzum.ipfs.w3s.link/" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>
+    <div class="bid-info">
+      <p>Get ready to place your bids!</p>
+      <p><strong>Current bid: $50</strong></p>
+    </div>
 
-  <div class="auction-box">
-    <p><strong>Auction Starts:</strong> July 30, 2025 @ 9:00 PM EST</p>
-    <p><strong>Starting Bid:</strong> $100</p>
-    <p>Connect your wallet to place a bid.</p>
-
-    <button class="button" onclick="connectWallet()">🔗 Connect MetaMask</button>
-    <br/>
-    <input id="bidAmount" type="number" min="100" step="10" placeholder="Enter bid ($)" />
-    <br/>
-    <button class="button" onclick="placeBid()">💰 Place Bid</button>
+    <button class="button" id="start-bid" disabled>Place Your Bid</button>
   </div>
 
   <script>
-    async function connectWallet() {
-      if (typeof window.ethereum !== 'undefined') {
-        try {
-          const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
-          alert('Connected: ' + accounts[0]);
-        } catch (err) {
-          console.error(err);
-          alert('Wallet connection failed.');
-        }
+    // Set the auction start date and time
+    const auctionStartDate = new Date("July 30, 2025 21:00:00 GMT-0400");
+
+    // Update the countdown every second
+    const countdownElement = document.getElementById("countdown");
+    const startBidButton = document.getElementById("start-bid");
+
+    function updateCountdown() {
+      const now = new Date();
+      const timeLeft = auctionStartDate - now;
+
+      if (timeLeft > 0) {
+        const hours = Math.floor(timeLeft / (1000 * 60 * 60));
+        const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+        countdownElement.textContent = `Time left: ${hours}h ${minutes}m ${seconds}s`;
       } else {
-        alert('Please install MetaMask!');
+        countdownElement.textContent = "The auction is live!";
+        startBidButton.disabled = false;
+        startBidButton.textContent = "Place Your Bid Now!";
       }
     }
 
-    async function placeBid() {
-      const bid = document.getElementById("bidAmount").value;
-      if (!bid || bid < 100) {
-        alert("Bid must be $100 or more.");
-        return;
-      }
-      // You would replace this with smart contract logic
-      alert(`Bid placed: $${bid}. (Smart contract logic goes here.)`);
-    }
+    setInterval(updateCountdown, 1000);
   </script>
 
 </body>
